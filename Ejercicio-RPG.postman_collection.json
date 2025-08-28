@@ -1,0 +1,97 @@
+{
+  "info": {
+    "name": "Ejercicio RPG API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "playerId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Players - Crear",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": "{{baseUrl}}/players",
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Alice\"\n}" }
+      }
+    },
+    {
+      "name": "Players - Obtener por ID",
+      "request": { "method": "GET", "url": "{{baseUrl}}/players/{{playerId}}" }
+    },
+    {
+      "name": "Players - Actualizar stats",
+      "request": {
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": "{{baseUrl}}/players/{{playerId}}",
+        "body": { "mode": "raw", "raw": "{\n  \"level\": 2\n}" }
+      }
+    },
+    {
+      "name": "Locations - Listar",
+      "request": { "method": "GET", "url": "{{baseUrl}}/locations" }
+    },
+    {
+      "name": "Gather - Bosque",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": "{{baseUrl}}/players/{{playerId}}/gather",
+        "body": { "mode": "raw", "raw": "{\n  \"locationId\": \"forest\"\n}" }
+      }
+    },
+    {
+      "name": "Recipes - Listar",
+      "request": { "method": "GET", "url": "{{baseUrl}}/recipes" }
+    },
+    {
+      "name": "Recipes - Aprendibles por jugador",
+      "request": { "method": "GET", "url": "{{baseUrl}}/players/{{playerId}}/recipes" }
+    },
+    {
+      "name": "Craft - Espada de Madera",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": "{{baseUrl}}/players/{{playerId}}/craft",
+        "body": { "mode": "raw", "raw": "{\n  \"recipeId\": \"wood_sword\"\n}" }
+      }
+    },
+    {
+      "name": "Inventory - Ver",
+      "request": { "method": "GET", "url": "{{baseUrl}}/players/{{playerId}}/inventory" }
+    },
+    {
+      "name": "Inventory - Borrar item (ejemplo oak_wood)",
+      "request": {
+        "method": "DELETE",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": "{{baseUrl}}/players/{{playerId}}/inventory/oak_wood",
+        "body": { "mode": "raw", "raw": "{\n  \"quantity\": 1\n}" }
+      }
+    },
+    {
+      "name": "Errores - Crear jugador inválido",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": "{{baseUrl}}/players",
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"\"\n}" }
+      }
+    },
+    {
+      "name": "Errores - Gather ubicación inválida",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": "{{baseUrl}}/players/{{playerId}}/gather",
+        "body": { "mode": "raw", "raw": "{\n  \"locationId\": \"invalid\"\n}" }
+      }
+    }
+  ]
+}
+
+
