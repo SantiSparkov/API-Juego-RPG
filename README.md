@@ -136,30 +136,30 @@ Cobertura: configurada en `jest.config.js` con `collectCoverage` y `collectCover
 - `NODE_ENV=test` evita levantar el servidor (no `listen`) durante tests.
 - Preparado para reemplazar repos en memoria por BD en el futuro.
 
-### Conceptos del juego
+### 📚 Conceptos del juego
 - Jugador: entidad principal con `nivel`, `experiencia`, `habilidades` (mining, woodcutting, crafting) e `inventario`.
 - Ubicaciones: definen qué ítems pueden caer, cantidades y probabilidades base; el skill relevante aumenta las chances.
 - Recetas: especifican materiales requeridos, resultado y experiencia otorgada al craftear.
 - Inventario: lista de ítems con cantidades; craftear consume materiales y agrega el resultado.
 
-### Flujo típico de uso de la API
+### 🔁 Flujo típico de uso de la API
 1) Crear un jugador (POST /players).
 2) Consultar ubicaciones (GET /locations) y recolectar (POST /players/:id/gather) hasta juntar materiales.
 3) Consultar recetas (GET /recipes o GET /players/:id/recipes).
 4) Craftear (POST /players/:id/craft) para fabricar el ítem objetivo.
 5) Ver/gestionar inventario (GET/DELETE /players/:id/inventory).
 
-### Diseño de la API
+### 🧭 Diseño de la API
 - Principios REST: recursos claros (`players`, `locations`, `recipes`, `inventory`) y verbos HTTP correctos.
 - Validación clásica: comprobaciones simples de entrada en controladores; errores consistentes con `{ error: string }`.
 - Capas separadas: rutas → controladores → servicios → repositorios/datos.
 - Almacenamiento en memoria: rápido para desarrollo y testing; fácilmente reemplazable por una base de datos.
 
-### Experiencia y progresión
+### 🆙 Experiencia y progresión
 - Recolección otorga experiencia proporcional a lo obtenido y puede subir `level` (umbral por nivel) y mejorar habilidades indirectamente.
 - Crafteo otorga experiencia específica de la receta y mejora `crafting`.
 
-### Lo que incluye la API
+### 📦 Lo que incluye la API
 - CRUD básico de jugador (crear, leer, actualizar stats).
 - Recolección con RNG y bonus por habilidad.
 - Recetas de ejemplo (Espada de Madera, Casco de Hierro, Anillo de Gema).
